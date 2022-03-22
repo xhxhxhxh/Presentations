@@ -31,15 +31,20 @@
           data-auto-animate-delay="0.3"
           data-auto-animate-easing="ease"
         ></div>
-        <img
+        <div
           data-auto-animate-easing="ease"
           data-auto-animate-duration="0.7"
-          src="../assets/text.png"
           class="center-bl"
           data-id="center-text"
-          style="width: 1px; height: 1px; opacity: 0"
-          alt=""
-        />
+          style="
+            width: 24px;
+            height: 10px;
+            opacity: 0;
+            border-radius: 1px !important;
+          "
+        >
+          <span style="transform: scale(0.1)">工作内容</span>
+        </div>
         <div
           data-auto-animate-easing="ease"
           data-auto-animate-duration="0.2"
@@ -77,28 +82,28 @@
           class="white-point-big"
           data-id="white-point"
           :style="{
-            width: `${pointMaxWidth}px`,
-            height: `${pointMaxWidth}px`,
-            'margin-left': `${-pointMaxWidth / 2}px`,
-            'margin-top': `${-pointMaxWidth / 2}px`,
+            width: `${pointMaxWidth * 2}px`,
+            height: `${pointMaxWidth * 2}px`,
+            'margin-left': `${-pointMaxWidth}px`,
+            'margin-top': `${-pointMaxWidth}px`,
           }"
         ></div>
-        <img
-          src="../assets/text.png"
-          alt=""
+        <div
           data-auto-animate-delay="0.6"
           data-auto-animate-duration="1.1"
           class="center-bl"
           data-id="center-text"
           data-auto-animate-easing="cubic-bezier(0.175, 0.885, 0.320, 1.275)"
           style="
-            width: 400px;
+            width: 240px;
             height: 100px;
-            margin-left: -200px;
+            margin-left: -120px;
             margin-top: -50px;
             opacity: 1;
           "
-        />
+        >
+          <span>工作内容</span>
+        </div>
         <div
           class="task-box-offset"
           :data-id="'task' + index"
@@ -117,11 +122,108 @@
           <div
             class="content"
             :style="{ transform: `rotate(${item.rotate}deg)` }"
-          ></div>
+          >
+            <span
+              style="opacity: 0"
+              :data-id="'taskText' + index"
+              data-auto-animate-easing="ease"
+              data-auto-animate-delay="0"
+              data-auto-animate-duration="0.2"
+              >{{ item.text }}</span
+            >
+          </div>
         </div>
       </section>
-      <section data-transition="zoom">
-        <p style="color: rgba(237, 100, 166, 1)">工作内容和业绩</p>
+      <section data-auto-animate>
+        <div
+          class="white-point-big"
+          data-id="white-point"
+          :style="{
+            width: `${pointMaxWidth * 2}px`,
+            height: `${pointMaxWidth * 2}px`,
+            'margin-left': `${-pointMaxWidth}px`,
+            'margin-top': `${-pointMaxWidth}px`,
+          }"
+        ></div>
+        <div
+          class="center-bl"
+          data-id="center-text"
+          style="
+            width: 240px;
+            height: 100px;
+            margin-left: -120px;
+            margin-top: -50px;
+            opacity: 1;
+            color: #fff;
+          "
+        >
+          <span>工作内容</span>
+        </div>
+        <div
+          class="task-box-offset"
+          :data-id="'task' + index"
+          v-for="(item, index) in tasks"
+          :key="index"
+          :style="{
+            width: item.width - 4 + 'px',
+            height: item.height - 4 + 'px',
+            top: item.top + 20 + 'px',
+            left: item.left - 80 + 'px',
+          }"
+        >
+          <div
+            class="content"
+            :style="{ transform: `rotate(${item.rotate}deg)` }"
+          >
+            <span style="opacity: 1" :data-id="'taskText' + index">{{
+              item.text
+            }}</span>
+          </div>
+        </div>
+      </section>
+      <section data-auto-animate>
+        <ul class="b-center custom-ul">
+          <li>工作业绩</li>
+        </ul>
+      </section>
+      <section data-auto-animate>
+        <ul class="b-center custom-ul">
+          <li>工作业绩</li>
+          <li>
+            <span>2021年2月</span>
+            <span class="fragment">至2022年1月</span>
+          </li>
+        </ul>
+      </section>
+      <section data-auto-animate>
+        <ul class="b-center custom-ul">
+          <li>工作业绩</li>
+          <li>
+            <span>2021年2月</span>
+            <span>至2022年1月</span>
+          </li>
+          <li>
+            <span>完成大小需求：</span>
+            <span class="fragment" style="color: #e5637c">36个</span>
+          </li>
+        </ul>
+      </section>
+      <section data-auto-animate>
+        <ul class="b-center custom-ul">
+          <li>工作业绩</li>
+          <li>
+            <span>2021年2月</span>
+            <span>至2022年1月</span>
+          </li>
+          <li>
+            <span>完成大小需求：</span>
+            <span style="color: #e5637c">36个</span>
+          </li>
+          <li>
+            <span>修复bug：</span>
+            <span class="fragment" style="color: #e5637c">400+</span>
+          </li>
+        </ul>
       </section>
     </div>
   </div>
@@ -140,7 +242,7 @@ const sectionHeight = ref(0);
 
 const tasks = [
   {
-    text: "",
+    text: "instance",
     width: 90,
     height: 89,
     left: 203,
@@ -148,7 +250,7 @@ const tasks = [
     rotate: 0,
   },
   {
-    text: "",
+    text: "模型库",
     width: 88,
     height: 67,
     left: 429,
@@ -156,7 +258,7 @@ const tasks = [
     rotate: -10,
   },
   {
-    text: "",
+    text: "attached file",
     width: 90,
     height: 89,
     left: 702,
@@ -164,7 +266,7 @@ const tasks = [
     rotate: -12,
   },
   {
-    text: "",
+    text: "靶式符号",
     width: 90,
     height: 89,
     left: 921,
@@ -180,7 +282,7 @@ const tasks = [
     rotate: 0,
   },
   {
-    text: "",
+    text: "实例表",
     width: 88,
     height: 67,
     left: 165,
@@ -196,7 +298,7 @@ const tasks = [
     rotate: 33,
   },
   {
-    text: "",
+    text: "标准用例",
     width: 89,
     height: 67,
     left: 139,
@@ -204,15 +306,15 @@ const tasks = [
     rotate: -8,
   },
   {
-    text: "",
-    width: 59,
-    height: 59,
+    text: "图片库",
+    width: 64,
+    height: 64,
     left: 174,
     top: 445,
     rotate: -19,
   },
   {
-    text: "",
+    text: "黑盒表",
     width: 94,
     height: 92,
     left: 480,
@@ -220,7 +322,7 @@ const tasks = [
     rotate: 4,
   },
   {
-    text: "",
+    text: "通用表",
     width: 96,
     height: 73,
     left: 886,
@@ -228,7 +330,7 @@ const tasks = [
     rotate: 33,
   },
   {
-    text: "",
+    text: "快速创建IBD",
     width: 137,
     height: 135,
     left: 709,
@@ -236,7 +338,7 @@ const tasks = [
     rotate: 14,
   },
   {
-    text: "",
+    text: "ICD表",
     width: 78,
     height: 59,
     left: 1000,
@@ -252,23 +354,23 @@ const tasks = [
     rotate: -5,
   },
   {
-    text: "",
-    width: 58,
-    height: 57,
+    text: "bug修复",
+    width: 68,
+    height: 67,
     left: 549,
     top: 21,
     rotate: -5,
   },
   {
-    text: "",
-    width: 55,
-    height: 54,
+    text: "属性组",
+    width: 65,
+    height: 64,
     left: 323,
     top: 44,
     rotate: 12,
   },
   {
-    text: "",
+    text: "导航图",
     width: 78,
     height: 59,
     left: 778,
@@ -326,11 +428,11 @@ onMounted(() => {
     position: absolute;
     top: 50%;
     left: 50%;
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
+    background-color: #e5637c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
   }
   .report-title {
     .name {
@@ -356,7 +458,7 @@ onMounted(() => {
     }
   }
   .white-point-big {
-    background-color: #fff;
+    background-color: rgb(204, 204, 204);
     position: absolute;
     border-radius: 50%;
     top: 50%;
@@ -368,7 +470,7 @@ onMounted(() => {
     left: 50%;
     opacity: 0;
     .content {
-      background-color: rgba(246, 224, 94, 1);
+      background-color: #fff;
       width: 100%;
       height: 100%;
       border-radius: 8px;
@@ -382,10 +484,23 @@ onMounted(() => {
     left: 50%;
     opacity: 1;
     .content {
-      background-color: rgba(246, 224, 94, 1);
+      background-color: #fff;
       width: 100%;
       height: 100%;
       border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: rgb(26, 32, 44);
+      font-size: 16px;
+    }
+  }
+  .custom-ul {
+    padding: 0;
+    margin: 0;
+    li {
+      list-style: none;
+      display: flex;
     }
   }
 }
