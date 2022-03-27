@@ -2,7 +2,7 @@
   <div class="reveal">
     <div class="slides">
       <section>
-        <p class="b-center report-title" style="font-size: 46px">
+        <p class="b-center report-title" style="font-size: 52px">
           述职报告
           <span class="name">——徐皓</span>
         </p>
@@ -675,7 +675,7 @@ onMounted(() => {
       position: absolute;
       left: 50%;
       font-size: 30px;
-      transform: translate(55px, 55px);
+      transform: translate(55px, 60px);
     }
   }
   .white-point {
